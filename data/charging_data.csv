@@ -1,0 +1,10 @@
+📂 Dataset Access Notice
+
+Due to the file size limitations of GitHub (maximum file size 100MB), the EV charging dataset could not be uploaded directly to the repository.
+
+To ensure seamless access, the dataset has been securely uploaded to Google Drive.
+
+🔗 EV Charging Dataset Download Link:
+https://drive.google.com/file/d/1uKnYeaDew3ih_Tk45mEccpM6amg6ldiZ/view?usp=sharing
+
+Note: Please download the dataset from the above link and place it in the data/ folder before running the application.
