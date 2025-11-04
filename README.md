@@ -44,6 +44,7 @@ Version Control	Git + GitHub
 
 
 📁 Project Structure
+
 EV-Smart-Analytics-Assistance-System/
 │
 ├── app.py                     # Streamlit main dashboard
