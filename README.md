@@ -1,143 +1,149 @@
 ⚡ EV Smart Analytics & Assistance System
 
-An intelligent Streamlit-based dashboard that integrates Electric Vehicle (EV) data analytics, ML predictions, and an AI-powered chatbot for smarter decision-making and real-time EV insights.
+A smart EV analytics web platform built with Streamlit, integrating:
+
+📊 EV performance & charging analytics
+
+🤖 AI-powered EV assistant chatbot
+
+🧠 Machine learning-based prediction engine
+
+Designed for EV owners, researchers, and developers to explore real-world EV behavior and make informed decisions.
 
 🚀 Project Overview
 
-The EV Smart Analytics & Assistance System enables EV owners, analysts, and researchers to:
+This system enables you to:
 
-Analyze and visualize EV performance trends
+Analyze EV dataset patterns (range, battery, charging)
 
-Predict energy usage and range using ML models
+Visualize usage & efficiency metrics
 
-Interact with an integrated AI chatbot for EV-related assistance
+Predict EV performance using ML
+
+Ask EV-related questions to an intelligent chatbot
+
+Explore a clean & interactive Streamlit dashboard
 
 🎯 Key Features
 
-✅ EV Data Analysis – View detailed insights about vehicle performance and battery metrics.
-✅ Charging Behavior Insights – Explore patterns in charging sessions, energy costs, and time usage.
-✅ Trip Analytics – Visualize distance, efficiency, and power consumption trends.
-✅ Machine Learning Predictions – Predict range or battery degradation using trained ML models.
-✅ AI Chatbot Integration – Ask EV-related questions and get intelligent, data-backed responses.
-✅ Modern Streamlit UI – Built with a clean dark theme and dynamic navigation.
+✅ EV Performance & Battery Analytics
+✅ Charging Behavior & Cost Analysis
+✅ Trip & Efficiency Visualization
+✅ Machine Learning-Driven EV Metrics Prediction
+✅ AI Assistant powered by OpenAI API
+✅ Modern & responsive Streamlit UI
 
-🧠 Technologies Used
+🧠 Tech Stack
 Component	Technology
 Frontend	Streamlit
 Backend	Python
-ML Model	Scikit-learn, Pandas, NumPy
-Visualization	Matplotlib, Seaborn, Plotly
+ML	Scikit-Learn, Pandas, NumPy
+Visuals	Plotly, Matplotlib, Seaborn
 Chatbot	OpenAI API
-Dataset Handling	Pandas, CSV
 Version Control	Git + GitHub
-📁 Folder Structure
-EV Smart Analytics & Assistance System/
+📁 Project Structure
+EV-Smart-Analytics-Assistance-System/
 │
-├── app.py                     # Main Streamlit app
-├── chatbot.py                 # Chatbot API integration
-├── model_training.py          # Model building and training
-├── train_model.py             # Model testing / retraining
+├── app.py                     # Streamlit main dashboard
+├── chatbot.py                 # AI chatbot integration
+├── train_model.py             # Model training script
 │
-├── data/                      # Datasets
+├── data/                      # Datasets (local CSV files)
 │   ├── ev_data.csv
-│   ├── charging_data.csv
 │   ├── trip_logs.csv
 │   ├── chatbot_data.csv
+│   └── charging_data.csv   (not stored on GitHub)
 │
-├── models/                    # Trained ML models
+├── models/                   
 │   ├── model.pkl
 │   └── scaler.pkl
 │
-├── utils/                     # Helper scripts
+├── utils/
 │   ├── preprocessing.py
 │   └── visualizations.py
 │
-├── requirements.txt           # Python dependencies
-└── README.md                  # Documentation
+├── requirements.txt
+└── README.md
 
-📊 Dataset Description
+📂 Dataset Access
 
-The project uses multiple CSV files covering EV specifications, trip data, and charging patterns.
+⚠️ The charging dataset (~115MB) exceeded GitHub's file limit, so it is hosted externally.
 
-Dataset	Description
+📥 Download Dataset:
+https://drive.google.com/file/d/1uKnYeaDew3ih_Tk45mEccpM6amg6ldiZ/view?usp=sharing
+
+After download, place inside:
+
+data/charging_data.csv
+
+📊 Dataset Information
+File	Description
 ev_data.csv	Vehicle model, battery capacity, manufacturer, range
-charging_data.csv	Charging duration, power, cost, and session logs
-trip_logs.csv	Trip distance, average speed, and energy usage
-chatbot_data.csv	Reference data for EV chatbot responses
+charging_data.csv	Charging duration, power, session logs, cost
+trip_logs.csv	Distance, speed, energy usage
+chatbot_data.csv	Custom data for chatbot fine-tuning
 
-Sources: Kaggle Datasets, Data.gov, and synthetic test data
+Sources: Kaggle, Data.gov, synthetic EV dataset
 
-⚙️ Installation
+⚙️ Setup & Installation
+Clone repo:
+git clone https://github.com/mahendramanikanta/EV-Smart-Analytics-Assistance-System.git
+cd EV-Smart-Analytics-Assistance-System
 
-Clone the repository
-
-git clone https://github.com/mahendramanikanta/EV-Smart-Analytics.git
-cd EV-Smart-Analytics
-
-
-Install dependencies
-
+Install dependencies:
 pip install -r requirements.txt
 
-
-Run Streamlit app
-
+Run Streamlit dashboard:
 streamlit run app.py
 
+🤖 AI Chatbot Setup
 
-Open in browser
-
-http://localhost:8501
-
-🤖 Chatbot Integration
-
-The chatbot is powered by the OpenAI API and answers EV-related queries intelligently.
-
-Example:
+Replace YOUR_API_KEY with your OpenAI API key in chatbot.py
 
 import openai
-
 openai.api_key = "YOUR_API_KEY"
 
-response = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
-    messages=[
-        {"role": "user", "content": "Which EV offers the best range under ₹20 lakh?"}
-    ]
-)
 
+Example usage:
+
+response = openai.ChatCompletion.create(
+  model="gpt-3.5-turbo",
+  messages=[{"role": "user", "content": "Best EV under ₹20 lakhs?"}]
+)
 print(response["choices"][0]["message"]["content"])
 
-🧩 Machine Learning Model
+🧠 Machine Learning Model
 
-Training Script: model_training.py
+Trains on EV dataset (battery, range, energy)
 
-Testing Script: train_model.py
+Saves model & scaler in /models/
 
-Saved Models: models/model.pkl, models/scaler.pkl
+Script: train_model.py
 
-The model predicts metrics such as range, efficiency, or energy consumption based on historical data.
+Future enhancements:
 
-📈 Future Enhancements
+Neural networks for range prediction
 
-🌐 Real-time EV API data (Tesla, Tata EV, MG)
+Real-time model update from user data
 
-🎙️ Voice-enabled chatbot assistant
-
-🛰️ Route optimization using charging station data
-
-🔋 Predictive maintenance and fault detection via IoT sensors
-
+🧩 Planned Enhancements
+Feature	Status
+Streamlit Dashboard UI	✅ Done
+Dataset Cleaning & EDA	✅ Done
+EV ML Model	✅ Done
+Chatbot Integration	🛠 In progress
+Streamlit Cloud Deployment	⏳ Next
+Voice-based EV Assistant	Coming
+IoT sensor stream input	Coming
 👤 Author
 
 Manikanta
-🎓 Engineering Student – CSE (IoT)
-💡 Passionate about AI, IoT, and Smart Systems
+🎓 CSE (IoT) | AI & IoT Enthusiast
 
-🔗 GitHub: mahendramanikanta
+🌐 GitHub: https://github.com/mahendramanikanta
 
-🔗 LinkedIn: pathakotimanikanta
+🔗 LinkedIn: https://www.linkedin.com/in/pathakotimanikanta
 
 📜 License
 
-This project is licensed under the MIT License – feel free to modify and use for educational or research purposes.
+MIT License — Free to use for learning & research 🧠✨
