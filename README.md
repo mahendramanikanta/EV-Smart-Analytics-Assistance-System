@@ -41,6 +41,8 @@ ML	Scikit-Learn, Pandas, NumPy
 Visuals	Plotly, Matplotlib, Seaborn
 Chatbot	OpenAI API
 Version Control	Git + GitHub
+
+
 📁 Project Structure
 EV-Smart-Analytics-Assistance-System/
 │
@@ -64,6 +66,7 @@ EV-Smart-Analytics-Assistance-System/
 │
 ├── requirements.txt
 └── README.md
+
 
 📂 Dataset Access
 
