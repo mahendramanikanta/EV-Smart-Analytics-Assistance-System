@@ -1,4 +1,5 @@
 # model_training.py
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -6,29 +7,26 @@ from sklearn.linear_model import LinearRegression
 import pickle
 
 # Load dataset
-ev_data = pd.read_csv("data/ev_data.csv")
+df = pd.read_csv("data/ev_data.csv")
+df.columns = df.columns.str.strip()
 
-# Select useful columns
-features = ['Model Year', 'Base MSRP']
-target = 'Electric Range'
+# Feature selection
+X = df[["Model Year", "Base MSRP"]]
+y = df["Electric Range"]
 
-# Drop rows with missing values
-ev_data = ev_data[features + [target]].dropna()
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Split data
-X = ev_data[features]
-y = ev_data[target]
-
-# Scale features
+# Scale data
 scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
+X_train_scaled = scaler.fit_transform(X_train)
 
-# Train model
+# Model
 model = LinearRegression()
-model.fit(X_scaled, y)
+model.fit(X_train_scaled, y_train)
 
-# Save model and scaler
-pickle.dump(model, open('models/model.pkl', 'wb'))
-pickle.dump(scaler, open('models/scaler.pkl', 'wb'))
+# Save files
+pickle.dump(model, open("models/model.pkl", "wb"))
+pickle.dump(scaler, open("models/scaler.pkl", "wb"))
 
-print("✅ Model and Scaler saved successfully!")
+print("Model and Scaler saved successfully!")
