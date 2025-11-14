@@ -1,17 +1,46 @@
 # chatbot.py
-import random
+import google.generativeai as genai
 
-responses = {
-    "hi": ["Hello!", "Hi there!", "Hey 👋"],
-    "ev": ["Electric vehicles are eco-friendly and cost-efficient."],
-    "range": ["Electric range depends on battery capacity and make."],
-    "tesla": ["Tesla is a leading EV manufacturer known for innovation."],
-    "bye": ["Goodbye!", "See you later!", "Take care!"]
-}
+def chat_reply(prompt: str, api_key: str = None) -> str:
+    """
+    Uses Google Gemini if API key is provided.
+    Otherwise falls back to rule-based responses.
+    """
 
-def chatbot_response(user_input):
-    user_input = user_input.lower()
-    for key in responses:
-        if key in user_input:
-            return random.choice(responses[key])
-    return "Sorry, I don’t have an answer for that yet 🤖"
+    prompt = (prompt or "").strip()
+    if not prompt:
+        return "Please enter a question."
+
+    # ---- Use Gemini if API key exists ----
+    if api_key:
+        try:
+            genai.configure(api_key=api_key)
+
+            model = genai.GenerativeModel("gemini-pro")
+            response = model.generate_content(
+                f"You are an expert Electric Vehicle (EV) assistant. Answer concisely.\nUser: {prompt}"
+            )
+
+            return response.text.strip()
+
+        except Exception:
+            pass  # Fallback to rule-based bot
+
+    # ---- Rule-based fallback ----
+    p = prompt.lower()
+
+    if "range" in p:
+        return "Typical EV range is 250–500 km depending on battery size and efficiency."
+    if "charge" in p:
+        return "Fast charging adds 100–200 km in ~20–30 minutes. Home AC charging is slower."
+    if "best" in p:
+        return "For long trips, choose EVs with >60 kWh battery. For city use, compact EVs are ideal."
+    if "battery" in p:
+        return "Keep charge between 20–80%, avoid extreme heat, and minimize fast-charging."
+    if "maintenance" in p:
+        return "EV maintenance involves tires, brakes, coolant, and firmware updates."
+    if "price" in p:
+        return "EV price depends on battery capacity, features, and brand — higher range means higher cost."
+
+    return "I can help with EV range, charging, comparisons, and battery care. Ask anything!"
+
