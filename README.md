@@ -1,67 +1,89 @@
-## ⚡ EV Smart Analytics & Assistance System
+# ⚡ EV Smart Analytics & Assistance System
 
-A smart EV analytics web platform built with **Streamlit**, integrating:
+A smart Electric Vehicle (EV) analytics platform built using **Streamlit**, integrating:
 
 * 📊 EV performance & charging analytics
-* 🤖 AI-powered EV assistant chatbot
-* 🧠 Machine learning-based prediction engine
+* 🤖 AI-powered Gemini EV assistant chatbot
+* 🧠 Machine learning–based EV range prediction
+* 🎨 Modern UI with visualizations & metrics
 
-Designed for **EV owners, researchers, and developers** to explore real-world EV behavior and make informed decisions.
-
----
-
-## 🚀 Project Overview
-
-This system enables you to:
-
-* Analyze EV dataset patterns (range, battery, charging)
-* Visualize usage & efficiency metrics
-* Predict EV performance using ML
-* Ask EV-related questions to an intelligent chatbot
-* Explore a clean & interactive Streamlit dashboard
+Built for **EV owners, researchers, developers, and data analysts** to explore, visualize, and understand EV behavior.
 
 ---
 
-## 🎯 Key Features
+# 🚀 Project Overview
 
-✅ EV Performance & Battery Analytics
-✅ Charging Behavior & Cost Analysis
-✅ Trip & Efficiency Visualization
-✅ Machine Learning-Driven EV Metrics Prediction
-✅ AI Assistant powered by OpenAI API
-✅ Modern & responsive Streamlit UI
+This dashboard allows you to:
+
+* Analyze EV dataset patterns (range, battery, model year)
+* Visualize efficiency and usage statistics
+* Predict EV range using an ML model
+* Interact with an **AI EV Assistant Chatbot** (Gemini-powered)
+* Explore EV insights through an interactive Streamlit UI
 
 ---
 
-## 🧠 Tech Stack
+# 🎯 Key Features
+
+### 🔍 EV Data & Performance Analytics
+
+* Range distribution
+* Manufacturer statistics
+* Range vs model year
+* State-wide EV counts
+
+### 🔮 Machine Learning Range Predictor
+
+* Predict EV electric range
+* Uses Linear Regression + StandardScaler
+* Model stored as `models/model.pkl`
+
+### 🤖 Intelligent EV Chatbot (Gemini API)
+
+* Uses Google’s **Gemini-Pro** model
+* Works even without API key (rule-based fallback)
+* Loaded securely using **secrets.toml**
+
+### 🎨 Modern UI
+
+* Dark theme
+* Clean layout
+* KPI metrics
+* Professional charts (Seaborn + Matplotlib)
+
+---
+
+# 🧠 Tech Stack
 
 | Component       | Technology                  |
 | --------------- | --------------------------- |
 | Frontend        | Streamlit                   |
 | Backend         | Python                      |
-| ML              | Scikit-Learn, Pandas, NumPy |
-| Visuals         | Plotly, Matplotlib, Seaborn |
-| Chatbot         | OpenAI API                  |
+| ML Model        | Scikit-Learn                |
+| Data Handling   | Pandas                      |
+| Visualization   | Seaborn, Matplotlib, Plotly |
+| Chatbot         | Google Gemini API           |
+| Deployment      | Streamlit Cloud             |
 | Version Control | Git + GitHub                |
 
 ---
 
-## 📁 Project Structure
+# 📁 Project Structure (Updated)
 
 ```
 EV-Smart-Analytics-Assistance-System/
 │
-├── app.py                     # Streamlit main dashboard
-├── chatbot.py                 # AI chatbot integration
-├── train_model.py             # Model training script
+├── app.py                     # Main dashboard with multipage UI
+├── chatbot.py                 # Gemini chatbot + rule-based fallback
+├── train_model.py             # ML model training script
 │
-├── data/                      # Datasets (local CSV files)
+├── data/
 │   ├── ev_data.csv
 │   ├── trip_logs.csv
 │   ├── chatbot_data.csv
-│   └── charging_data.csv   (not stored on GitHub)
+│   └── charging_data.csv (Not uploaded — stored in Google Drive)
 │
-├── models/                   
+├── models/
 │   ├── model.pkl
 │   └── scaler.pkl
 │
@@ -69,20 +91,25 @@ EV-Smart-Analytics-Assistance-System/
 │   ├── preprocessing.py
 │   └── visualizations.py
 │
+├── .streamlit/
+│   └── secrets.toml           # Contains GEMINI_API_KEY securely
+│
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## 📂 Dataset Access
+# 📂 Dataset Access (Updated)
 
-> ⚠️ The charging dataset (~115MB) exceeded GitHub's file limit, so it is hosted externally.
+⚠️ *Large file `charging_data.csv` (~115 MB) cannot be uploaded to GitHub (100MB limit).*
 
-📥 **Download Dataset:**
-[https://drive.google.com/file/d/1uKnYeaDew3ih_Tk45mEccpM6amg6ldiZ/view?usp=sharing](https://drive.google.com/file/d/1uKnYeaDew3ih_Tk45mEccpM6amg6ldiZ/view?usp=sharing)
+So it has been moved to Google Drive:
 
-After download, place inside:
+📥 **Download charging_data.csv:**
+👉 [https://drive.google.com/file/d/1uKnYeaDew3ih_Tk45mEccpM6amg6ldiZ/view?usp=sharing](https://drive.google.com/file/d/1uKnYeaDew3ih_Tk45mEccpM6amg6ldiZ/view?usp=sharing)
+
+After downloading, place here:
 
 ```
 data/charging_data.csv
@@ -90,35 +117,47 @@ data/charging_data.csv
 
 ---
 
-## 📊 Dataset Information
+# 📊 Dataset Information
 
-| File              | Description                                          |
-| ----------------- | ---------------------------------------------------- |
-| ev_data.csv       | Vehicle model, battery capacity, manufacturer, range |
-| charging_data.csv | Charging duration, power, session logs, cost         |
-| trip_logs.csv     | Distance, speed, energy usage                        |
-| chatbot_data.csv  | Custom data for chatbot fine-tuning                  |
-
-Sources: Kaggle, Data.gov, synthetic EV dataset
+| File              | Description                           |
+| ----------------- | ------------------------------------- |
+| ev_data.csv       | Model, battery, price, electric range |
+| charging_data.csv | Charging sessions, power, cost        |
+| trip_logs.csv     | Distance, speed, energy efficiency    |
+| chatbot_data.csv  | Training info for EV chatbot          |
 
 ---
 
-## ⚙️ Setup & Installation
+# ⚙️ Installation & Setup
 
-### Clone repo:
+### 1️⃣ Clone Repository
 
 ```bash
 git clone https://github.com/mahendramanikanta/EV-Smart-Analytics-Assistance-System.git
 cd EV-Smart-Analytics-Assistance-System
 ```
 
-### Install dependencies:
+### 2️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Run Streamlit dashboard:
+### 3️⃣ Add Gemini API Key
+
+Create this file:
+
+```
+.streamlit/secrets.toml
+```
+
+Paste:
+
+```toml
+GEMINI_API_KEY = "YOUR_API_KEY"
+```
+
+### 4️⃣ Run the App
 
 ```bash
 streamlit run app.py
@@ -126,66 +165,99 @@ streamlit run app.py
 
 ---
 
-## 🤖 AI Chatbot Setup
+# 🤖 AI Chatbot (Updated)
 
-Replace `YOUR_API_KEY` with your OpenAI API key in `chatbot.py`
-
-```python
-import openai
-openai.api_key = "YOUR_API_KEY"
-```
-
-Example usage:
+Uses **Gemini-Pro** by default:
 
 ```python
-response = openai.ChatCompletion.create(
-  model="gpt-3.5-turbo",
-  messages=[{"role": "user", "content": "Best EV under ₹20 lakhs?"}]
-)
-print(response["choices"][0]["message"]["content"])
+import google.generativeai as genai
+
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+model = genai.GenerativeModel("gemini-pro")
 ```
 
----
-
-## 🧠 Machine Learning Model
-
-* Trains on EV dataset (battery, range, energy)
-* Saves model & scaler in `/models/`
-* Script: `train_model.py`
-
-Future enhancements:
-
-* Neural networks for range prediction
-* Real-time model update from user data
+Fallback rule-based chatbot activates **if API key is missing or fails**.
 
 ---
 
-## 🧩 Planned Enhancements
+# 🧠 ML Model Pipeline (Updated)
 
-| Feature                    | Status         |
-| -------------------------- | -------------- |
-| Streamlit Dashboard UI     | ✅ Done         |
-| Dataset Cleaning & EDA     | ✅ Done         |
-| EV ML Model                | ✅ Done         |
-| Chatbot Integration        | 🛠 In progress |
-| Streamlit Cloud Deployment | ⏳ Next         |
-| Voice-based EV Assistant   | Coming         |
-| IoT sensor stream input    | Coming         |
+### ✔ Training Script Updated
+
+`train_model.py` now:
+
+* Loads EV dataset
+* Cleans columns
+* Trains Linear Regression model
+* Scales features
+* Saves `model.pkl` & `scaler.pkl`
+
+### ✔ Prediction in UI
+
+`app.py` auto-detects missing model files & warns the user.
 
 ---
 
-## 👤 Author
+# 🧩 Recent Additions (What We Added 🔥)
+
+### ✅ Upgraded `app.py`
+
+* Full navigation system
+* Error handling
+* API key loader
+* Safe CSV loader
+* EV Metrics section
+* Professional UI components
+
+### ✅ Upgraded `chatbot.py`
+
+* Full Gemini integration
+* Rule-based fallback
+* Exception handling
+* Cleaner response formatting
+
+### ✅ Added `.streamlit/secrets.toml` support
+
+* Secure API key handling
+* No keys inside source code
+
+### ✅ Improved Folder Structure
+
+* Cleaner, modular, professional repository
+
+### ✅ Deployment-ready Architecture
+
+* Works with Streamlit Cloud
+* Works with localhost
+* No path errors
+
+---
+
+# 🧩 Planned Enhancements
+
+| Feature                        | Status        |
+| ------------------------------ | ------------- |
+| UI Enhancement                 | 🔜            |
+| Voice-based chatbot            | Coming soon   |
+| Lottie animations              | Coming        |
+| Streamlit Cloud deployment     | Next step     |
+| Realtime EV API data           | Planned       |
+| Geolocation-based charging map | Future update |
+
+---
+
+# 👤 Author
 
 **Manikanta**
-🎓 CSE (IoT) | AI & IoT Enthusiast
+CSE – IoT | AI • ML • Smart Systems
 
 🌐 GitHub: [https://github.com/mahendramanikanta](https://github.com/mahendramanikanta)
 🔗 LinkedIn: [https://www.linkedin.com/in/pathakotimanikanta](https://www.linkedin.com/in/pathakotimanikanta)
 
 ---
 
-## 📜 License
+# 📜 License
 
-MIT License — Free to use for learning & research 🧠✨
+MIT License — Free for educational & research use.
 
 ---
