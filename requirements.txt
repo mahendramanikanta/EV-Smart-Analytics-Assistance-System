@@ -1,9 +1,11 @@
-streamlit
+streamlit>=1.18
 pandas
 numpy
 scikit-learn
 matplotlib
 seaborn
-openai
-python-dotenv
 plotly
+streamlit-lottie
+google-generative-ai    # if using Google Gemini client
+openai                  # if you use OpenAI instead
+requests
