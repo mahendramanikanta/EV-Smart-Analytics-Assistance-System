@@ -3,44 +3,53 @@ import google.generativeai as genai
 
 def chat_reply(prompt: str, api_key: str = None) -> str:
     """
-    Uses Google Gemini if API key is provided.
-    Otherwise falls back to rule-based responses.
+    Chatbot System:
+    1) If Gemini API key exists → use Gemini Pro model
+    2) If no key → fallback to rule-based EV assistant
     """
 
     prompt = (prompt or "").strip()
     if not prompt:
         return "Please enter a question."
 
-    # ---- Use Gemini if API key exists ----
+    # -------------------------------------
+    # 1) GEMINI AI MODE (via secrets.toml)
+    # -------------------------------------
     if api_key:
         try:
             genai.configure(api_key=api_key)
 
             model = genai.GenerativeModel("gemini-pro")
             response = model.generate_content(
-                f"You are an expert Electric Vehicle (EV) assistant. Answer concisely.\nUser: {prompt}"
+                f"You are an expert Electric Vehicle (EV) assistant. "
+                f"Give short, clear, accurate answers.\nUser: {prompt}"
             )
 
-            return response.text.strip()
+            # If Gemini returned text, use it
+            if response and response.text:
+                return response.text.strip()
 
         except Exception:
-            pass  # Fallback to rule-based bot
+            # If Gemini fails → continue to fallback
+            pass  
 
-    # ---- Rule-based fallback ----
+
+    # -------------------------------------
+    # 2) RULE-BASED FALLBACK MODE
+    # -------------------------------------
     p = prompt.lower()
 
     if "range" in p:
-        return "Typical EV range is 250–500 km depending on battery size and efficiency."
+        return "Most EVs deliver 250–500 km range depending on battery size and efficiency."
     if "charge" in p:
-        return "Fast charging adds 100–200 km in ~20–30 minutes. Home AC charging is slower."
+        return "Fast charging adds 100–200 km in 20–30 minutes; AC home charging is slower."
     if "best" in p:
-        return "For long trips, choose EVs with >60 kWh battery. For city use, compact EVs are ideal."
+        return "For highway trips, choose EVs with 60–70 kWh+ battery packs."
     if "battery" in p:
-        return "Keep charge between 20–80%, avoid extreme heat, and minimize fast-charging."
+        return "Maintain charge between 20–80%, avoid heat, and limit frequent DC fast charging."
     if "maintenance" in p:
-        return "EV maintenance involves tires, brakes, coolant, and firmware updates."
+        return "EVs need minimal maintenance: tires, brakes, coolant, and software updates."
     if "price" in p:
-        return "EV price depends on battery capacity, features, and brand — higher range means higher cost."
+        return "Price depends on battery capacity, brand, and features. Higher range = higher cost."
 
-    return "I can help with EV range, charging, comparisons, and battery care. Ask anything!"
-
+    return "I can help with EV charging, range, battery care, pricing, or recommendations. Ask anything!"
