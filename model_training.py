@@ -30,3 +30,19 @@ pickle.dump(model, open("models/model.pkl", "wb"))
 pickle.dump(scaler, open("models/scaler.pkl", "wb"))
 
 print("Model and Scaler saved successfully!")
+
+
+from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
+
+# Predictions
+y_pred = model.predict(X_test)
+
+# Metrics
+r2 = r2_score(y_test, y_pred)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+
+print("R² Score:", r2)
+print("MAE:", mae)
+print("MSE:", mse)
+
