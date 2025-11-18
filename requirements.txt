@@ -13,3 +13,4 @@ lottie
 pydantic
 streamlit
 python-dotenv
+scikit-learn==1.6.1
