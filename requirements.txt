@@ -9,3 +9,7 @@ streamlit-lottie
 google-generative-ai    # if using Google Gemini client
 openai                  # if you use OpenAI instead
 requests
+lottie
+pydantic
+streamlit
+python-dotenv
