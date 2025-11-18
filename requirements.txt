@@ -6,7 +6,7 @@ matplotlib
 seaborn
 plotly
 streamlit-lottie
-google-generative-ai    # if using Google Gemini client
+google-genai   # if using Google Gemini client
 openai                  # if you use OpenAI instead
 requests
 lottie
