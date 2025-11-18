@@ -105,7 +105,12 @@ if sidebar_lottie:
 else:
     st.sidebar.write("🔋 EV Smart Analytics")
 
-page = st.sidebar.radio("", ["Home", "Data Visualization", "Predict Range", "Chatbot", "About"])
+page = st.sidebar.radio(
+    "Navigation",
+    ["Home", "Data Visualization", "Predict Range", "Chatbot", "About"],
+    label_visibility="collapsed"
+)
+
 st.sidebar.markdown("---")
 st.sidebar.subheader("🔐 Gemini API Key (optional)")
 api_key_input = st.sidebar.text_input("Enter API Key", type="password", help="Optional: put your GEMINI_API_KEY in .streamlit/secrets.toml for deployment")
